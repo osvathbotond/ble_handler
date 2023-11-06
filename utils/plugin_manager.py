@@ -27,14 +27,14 @@ def get_receiver(name):
     if name in _RECEIVERS:
         return _RECEIVERS[name]
     else:
-        options = ", ".join(f"\"{k}\"" for k in (_RECEIVERS.keys()))
+        options = ", ".join(f"\"{k}\"" for k in _RECEIVERS)
         raise KeyError(f"Receiver \"{name}\" is not available. Possible options are: {options}.")
 
 def get_sender(name):
     if name in _SENDERS:
         return _SENDERS[name]
     else:
-        options = ", ".join(f"\"{k}\"" for k in (_SENDERS.keys()))
+        options = ", ".join(f"\"{k}\"" for k in _SENDERS)
         raise KeyError(f"Sender \"{name}\" is not available. Possible options: {options}")
 
 def get_receivers():
