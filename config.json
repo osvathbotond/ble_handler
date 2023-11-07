@@ -14,6 +14,7 @@
             "receiver": "pvvx",
             "senders": {
                 "print": {},
+                "mongodb": {},
                 "file": {
                     "filename": "/tmp/bb.json"
                 }
@@ -26,6 +27,14 @@
             "port": 1883
         },
         "print": {},
-        "file": {}
+        "file": {},
+        "mongodb": {
+            "address": "localhost",
+            "port": 27017,
+            "username": "root",
+            "password": "example",
+            "database": "thermometer",
+            "collection": "measurements"
+        }
     }
 }

@@ -1,3 +1,4 @@
 git+https://github.com/pybluez/pybluez.git
 paho-mqtt
 pybind11
+pymongo
