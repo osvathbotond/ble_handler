@@ -56,7 +56,7 @@ except ImportError as e:
                        size=message_bytearray[0],
                        uid=message_bytearray[1],
                        UUID=int.from_bytes(message_bytearray[2:4], byteorder='little', signed=False),
-                       MAC=[message_bytearray[4+i] for i in range(6)],
+                       MAC=[message_bytearray[i] for i in range(4, 10)],
                        temperature=int.from_bytes(message_bytearray[10:12], byteorder='little', signed=True),
                        humidity=int.from_bytes(message_bytearray[12:14], byteorder='little', signed=False),
                        battery_mv=int.from_bytes(message_bytearray[14:16], byteorder='little', signed=False),

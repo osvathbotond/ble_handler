@@ -9,7 +9,7 @@ from utils.plugin_manager import load_receivers
 from utils.plugin_manager import get_receivers
 
 
-def le_advertise_packet_handler(mac, adv_type, data, rssi):
+def le_advertise_packet_handler(mac, _, data, _):
     if mac not in devices:
         for name, receiver in receivers.items():
             if receiver.check_type(data[4:]):
@@ -41,6 +41,5 @@ if __name__ == "__main__":
     
     try:
         thread_bt.join()
-        # parse_le_advertising_events(sock=sock, mac_addr=devices.keys(), handler=le_advertise_packet_handler, debug=False)
     except KeyboardInterrupt:
         stop_event.set()

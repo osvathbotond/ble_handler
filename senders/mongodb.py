@@ -22,5 +22,5 @@ class MongoDBSender(Sender):
     def teardown(self) -> None:
         return
 
-    def send_message(self, name: str, settings: dict, receiver: Receiver) -> None:
+    def send_message(self, name: str, _: dict, receiver: Receiver) -> None:
         self.collection.insert_one(receiver.to_json(name))

@@ -66,6 +66,6 @@ def setup_senders(config):
 
 # Teardown
 def teardown_senders():
-    for sender_name, sender in _SENDERS.items():
+    for _, sender in _SENDERS.items():
         if hasattr(sender, "teardown"):
             sender.teardown()

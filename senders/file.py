@@ -6,7 +6,7 @@ from utils.plugin_manager import register_sender
 
 @register_sender("file")
 class FileSender(Sender):
-    def setup(self, config: dict) -> None:
+    def setup(self, _: dict) -> None:
         self.files = {}
     
     def teardown(self) -> None:
