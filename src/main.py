@@ -11,7 +11,7 @@ from utils.bluetooth_utils import enable_le_scan
 from utils.bluetooth_utils import parse_le_advertising_events
 
 
-def le_advertise_packet_handler(mac, _, data, _):
+def le_advertise_packet_handler(mac, adv_type, data, rssi):
     dev = devices[mac]
     res = dev.receiver.from_message(data[4:])
     for sender in dev.senders:

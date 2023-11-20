@@ -9,12 +9,15 @@ RUN : \
     && rm -rf /var/lib/apt/lists/* \
     && :
 
-COPY . /app
+COPY requirements.txt /tmp/
+RUN python3 -m pip --no-cache-dir --disable-pip-version-check install -r /tmp/requirements.txt
 
-RUN python3 -m pip --no-cache-dir --disable-pip-version-check install -r /app/requirements.txt
+COPY build.sh /tmp/
+COPY src /src
 
-WORKDIR /app
+WORKDIR /
+RUN /tmp/build.sh
 
-RUN sh build.sh
+COPY config.json /src/config.json
 
-CMD ["python3", "/app/main.py"]
+CMD ["python3", "/src/main.py"]

@@ -9,7 +9,7 @@ from utils.plugin_manager import load_receivers
 from utils.plugin_manager import get_receivers
 
 
-def le_advertise_packet_handler(mac, _, data, _):
+def le_advertise_packet_handler(mac, adv_type, data, rssi):
     if mac not in devices:
         for name, receiver in receivers.items():
             if receiver.check_type(data[4:]):
