@@ -13,13 +13,13 @@ class MqttSender(Sender):
         username = config.get("username", None)
         password = config.get("password", None)
 
-        self.client = mqtt.Client()
+        self.client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION2)
         if username is not None and password is not None:
             self.client.username_pw_set(username, password)
         self.client.connect(address, port)
 
     def teardown(self) -> None:
-        self.client.disconnect(mqtt.CallbackAPIVersion.VERSION1)
+        self.client.disconnect()
 
     def send_message(self, name: str, settings: dict, receiver: Receiver) -> None:
         self.client.publish(settings["topic"], json.dumps(receiver.to_json(name)))
