@@ -19,7 +19,7 @@ class MqttSender(Sender):
         self.client.connect(address, port)
 
     def teardown(self) -> None:
-        self.client.disconnect()
+        self.client.disconnect(mqtt.CallbackAPIVersion.VERSION1)
 
     def send_message(self, name: str, settings: dict, receiver: Receiver) -> None:
         self.client.publish(settings["topic"], json.dumps(receiver.to_json(name)))
