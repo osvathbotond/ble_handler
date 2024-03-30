@@ -13,12 +13,11 @@ COPY requirements.txt /tmp/
 RUN python3 -m pip --no-cache-dir --disable-pip-version-check install -r /tmp/requirements.txt
 
 COPY build.sh /tmp/
-RUN /tmp/build.sh
-
 COPY src /src
 
-COPY config.json /src/config.json
+WORKDIR /
+RUN /tmp/build.sh
 
-WORKDIR /src
+COPY config.json /src/config.json
 
 CMD ["python3", "/src/main.py"]
