@@ -7,7 +7,7 @@ from receivers._abc import Receiver
 from utils.plugin_manager import register_sender
 
 @register_sender("influxdb")
-class MongoDBSender(Sender):
+class InfluxDBSender(Sender):
     def setup(self, config: dict) -> None:
         address = config["address"]
         port = config["port"]
