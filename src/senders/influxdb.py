@@ -6,6 +6,7 @@ from senders._abc import Sender
 from receivers._abc import Receiver
 from utils.plugin_manager import register_sender
 
+
 @register_sender("influxdb")
 class InfluxDBSender(Sender):
     def setup(self, config: dict) -> None:
@@ -37,7 +38,9 @@ class InfluxDBSender(Sender):
                     p.tag(key, value)
                 case "field":
                     p.field(key, value)
-                case _:
-                    raise ValueError(f"Invalid option in typemap for device {name}: \"{_}\"")
-        
+                case other:
+                    raise ValueError(
+                        f'Invalid option in typemap for device {name}: "{other}"'
+                    )
+
         self.write_api.write(bucket=self.bucket, record=p)

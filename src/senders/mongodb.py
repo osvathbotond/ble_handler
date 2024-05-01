@@ -4,6 +4,7 @@ from senders._abc import Sender
 from receivers._abc import Receiver
 from utils.plugin_manager import register_sender
 
+
 @register_sender("mongodb")
 class MongoDBSender(Sender):
     def setup(self, config: dict) -> None:

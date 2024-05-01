@@ -15,6 +15,7 @@ def le_advertise_packet_handler(mac, adv_type, data, rssi):
             if receiver.check_type(data[4:]):
                 devices[mac] = name
 
+
 def log():
     while True:
         for _ in range(10):
@@ -22,6 +23,7 @@ def log():
             if stop_event.is_set():
                 return
         print(devices)
+
 
 if __name__ == "__main__":
     stop_event = Event()
@@ -34,11 +36,14 @@ if __name__ == "__main__":
 
     receivers = get_receivers()
 
-    thread_bt = Thread(target=parse_le_advertising_events, kwargs={"sock": sock, "handler": le_advertise_packet_handler, "debug": False})
+    thread_bt = Thread(
+        target=parse_le_advertising_events,
+        kwargs={"sock": sock, "handler": le_advertise_packet_handler, "debug": False},
+    )
     thread_bt.start()
     thread_log = Thread(target=log)
     thread_log.start()
-    
+
     try:
         thread_bt.join()
     except KeyboardInterrupt:

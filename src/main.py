@@ -10,12 +10,18 @@ from utils.config_manager import Config
 from utils.bluetooth_utils import enable_le_scan
 from utils.bluetooth_utils import parse_le_advertising_events
 
+from time import perf_counter
+
 
 def le_advertise_packet_handler(mac, adv_type, data, rssi):
     dev = devices[mac]
+    t1 = perf_counter()
     res = dev.receiver.from_message(data[4:])
+    t2 = perf_counter()
+    print(f'Creating "{dev.receiver_name}" object took {t2-t1:.4f}s.')
     for sender in dev.senders:
         sender(res)
+
 
 if __name__ == "__main__":
     load_senders()
@@ -29,8 +35,13 @@ if __name__ == "__main__":
 
     sock = hci_open_dev(0)
     enable_le_scan(sock, filter_duplicates=False)
-    
+
     try:
-        parse_le_advertising_events(sock=sock, mac_addr=devices.keys(), handler=le_advertise_packet_handler, debug=False)
+        parse_le_advertising_events(
+            sock=sock,
+            mac_addr=devices.keys(),
+            handler=le_advertise_packet_handler,
+            debug=False,
+        )
     except KeyboardInterrupt:
         teardown_senders()
