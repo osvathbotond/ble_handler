@@ -1,3 +1,4 @@
+from __future__ import annotations
 from abc import ABC
 from abc import abstractmethod
 
@@ -12,4 +13,4 @@ class Receiver(ABC):
 
     @staticmethod
     @abstractmethod
-    def from_message(cls, message: bytes): ...
+    def from_message(cls, message: bytes) -> Receiver: ...

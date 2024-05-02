@@ -4,7 +4,7 @@ from utils.plugin_manager import register_sender
 
 
 @register_sender("nothing")
-class PrintSender(Sender):
+class NothingSender(Sender):
     def setup(self, _: dict) -> None:
         return
 

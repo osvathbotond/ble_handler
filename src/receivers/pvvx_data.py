@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from receivers._abc import Receiver
 from utils.plugin_manager import register_receiver
 
@@ -52,7 +54,7 @@ except ImportError:
                 return False
 
         @classmethod
-        def from_message(cls, message: bytes):
+        def from_message(cls, message: bytes) -> PVVXData:
             message_str = raw_packet_to_str(message)
             message_bytearray = bytearray.fromhex(message_str)
 
