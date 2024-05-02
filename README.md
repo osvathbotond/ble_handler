@@ -17,14 +17,14 @@ docker build -t ble_handler .
 and start it by running
 ```
 docker run --rm -ti --net=host ble_handler:latest bash
+```
 
 Note that `sudo` might be neccessary (for both `docker build` and `docker run`) to have access to the bluetooth of your device.
-```
 
 ## Getting the devices' MAC address and receiver type
-Both from the container or your machine, you can discover the visible devices and their type (provided that there is a receiver for them) with the `discover.py`. It can be run by
+Both from the container or your machine, you can discover the visible devices and their type (provided that there is a receiver for them) with the `main.py`. It can be run in discovery mode with
 ```
-python3 discover.py
+python3 main.py -d
 ```
 
 Note that `sudo` might be neccessary to have access to the bluetooth of your device.
@@ -41,5 +41,5 @@ Note that `sudo` might be neccessary to have access to the bluetooth of your dev
 
 ## Setting up a custom receiver and sender
 
-You can create your own receiver and sender by creating the python code similar to the existing ones in the appropriate folder. `receivers\pvvx_data.py` and `cpp/pvvx_data.cpp` provides an example of how to setup a c++ python binding as well.
+You can create your own receiver and sender by creating the python code similar to the existing ones in the appropriate folder. `receivers/pvvx_data.py` and `cpp/pvvx_data.cpp` provides an example of how to setup a c++ python binding as well.
 
